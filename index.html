@@ -31,7 +31,7 @@
                 <li><a href="#contact">Contact</a></li> <!-- Added Contact Link -->
             </ul>
              <!-- Theme Toggle -->
-            <button id="theme-toggle" aria-label="Toggle Light/Dark Theme">
+            <button id="theme-toggle" aria-label="Toggle Light/Dark Theme" aria-pressed="false">
                 <i class="fas fa-adjust"></i>
             </button>
              <!-- Mobile Menu Toggle -->
@@ -50,7 +50,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li> <!-- Added Contact Link -->
              <li>
-                <button id="mobile-theme-toggle" aria-label="Toggle Light/Dark Theme">
+                <button id="mobile-theme-toggle" aria-label="Toggle Light/Dark Theme" aria-pressed="false">
                     <i class="fas fa-adjust"></i> Theme
                 </button>
             </li>
@@ -156,8 +156,9 @@
             <!--
                 IMPORTANT: Replace 'YOUR_FORM_ID' in the action URL below
                 with the actual ID you get from Formspree after creating your form.
+                Example: action="https://formspree.io/f/mqkvpvza"
             -->
-            <form id="contact-form" action="https://formsubmit.co/samlan0703@gmail.com" method="POST">
+            <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
@@ -184,7 +185,7 @@
 
 
         <!-- Footer -->
-        <footer class="section">
+        <footer class="section"> <!-- Footer is now part of the container -->
             <p class="copyright">© <span id="current-year"></span> Samlan Ramung. All Rights Reserved.</p>
         </footer>
 
