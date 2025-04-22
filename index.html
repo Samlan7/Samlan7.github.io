@@ -13,13 +13,10 @@
     <!-- Font Awesome (for icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- AOS Library Removed -->
-    <!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
-
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body> <!-- Removed AOS default body attributes -->
+<body>
 
     <!-- Navbar Section -->
     <nav id="navbar">
@@ -31,6 +28,7 @@
                 <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li> <!-- Added Contact Link -->
             </ul>
              <!-- Theme Toggle -->
             <button id="theme-toggle" aria-label="Toggle Light/Dark Theme">
@@ -50,6 +48,7 @@
             <li><a href="#certifications">Certifications</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li> <!-- Added Contact Link -->
              <li>
                 <button id="mobile-theme-toggle" aria-label="Toggle Light/Dark Theme">
                     <i class="fas fa-adjust"></i> Theme
@@ -62,10 +61,10 @@
     <div class="container">
 
         <!-- Hero Section -->
-        <header id="hero" class="section"> <!-- Removed data-aos -->
-            <h1 class="name">SAMLAN RAMUNG</h1> <!-- Removed data-aos -->
-            <p class="subtitle">Aspiring Business & Data Analyst | IPM Student</p> <!-- Removed data-aos -->
-            <div class="contact-info"> <!-- Removed data-aos -->
+        <header id="hero" class="section">
+            <h1 class="name">SAMLAN RAMUNG</h1>
+            <p class="subtitle">Aspiring Business & Data Analyst | IPM Student</p>
+            <div class="contact-info">
                 <a href="mailto:samlan.r.ipm22@iimranchi.ac.in"><i class="fas fa-envelope"></i> samlan.r.ipm22@iimranchi.ac.in</a>
                 <a href="tel:+919481131909"><i class="fas fa-mobile-alt"></i> +91-9481131909</a>
                 <span><i class="fas fa-map-marker-alt"></i> Bangalore, India</span>
@@ -73,7 +72,7 @@
         </header>
 
         <!-- Work Experience Section -->
-        <section id="experience" class="section"> <!-- Removed data-aos -->
+        <section id="experience" class="section">
             <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
             <div class="entry">
                 <h3>TOVO, Bangalore</h3>
@@ -98,7 +97,7 @@
         </section>
 
         <!-- Education Section -->
-        <section id="education" class="section"> <!-- Removed data-aos -->
+        <section id="education" class="section">
             <h2><i class="fas fa-graduation-cap"></i> Education</h2>
             <div class="entry">
                 <h3>Indian Institute of Management (IIM) Ranchi</h3>
@@ -113,7 +112,7 @@
         </section>
 
         <!-- Certifications Section -->
-        <section id="certifications" class="section"> <!-- Removed data-aos -->
+        <section id="certifications" class="section">
             <h2><i class="fas fa-certificate"></i> Certifications & Courses</h2>
             <div class="entry">
                  <h3>Foundations in Data Science and Programming</h3>
@@ -123,7 +122,7 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="section"> <!-- Removed data-aos -->
+        <section id="projects" class="section">
             <h2><i class="fas fa-lightbulb"></i> Personal Projects</h2>
             <div class="entry">
                 <h3>Mindfulness & Productivity Exploration</h3>
@@ -133,7 +132,7 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="section"> <!-- Removed data-aos -->
+        <section id="skills" class="section">
             <h2><i class="fas fa-cogs"></i> Skills & Competencies</h2>
             <ul class="skills-list">
                 <li><i class="fas fa-pencil-alt"></i> Creative Writing</li>
@@ -150,15 +149,47 @@
             </ul>
         </section>
 
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2><i class="fas fa-envelope"></i> Contact Me</h2>
+            <p>Feel free to reach out! I'm always open to discussing new opportunities or collaborations.</p>
+            <!--
+                IMPORTANT: Replace 'YOUR_FORM_ID' in the action URL below
+                with the actual ID you get from Formspree after creating your form.
+            -->
+            <form id="contact-form" action="https://formsubmit.co/samlan0703@gmail.com" method="POST">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                 <!-- Optional: Add a honeypot field for spam protection -->
+                <input type="text" name="_gotcha" style="display:none !important">
+
+                <button type="submit" class="btn-submit">Send Message</button>
+                <div id="form-status"></div> <!-- To display success/error (optional, needs JS) -->
+            </form>
+        </section>
+
+
         <!-- Footer -->
-        <footer class="section"> <!-- Removed data-aos -->
+        <footer class="section">
             <p class="copyright">© <span id="current-year"></span> Samlan Ramung. All Rights Reserved.</p>
         </footer>
 
     </div> <!-- /container -->
 
-    <!-- AOS Script Removed -->
-    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> -->
     <!-- Custom Script -->
     <script src="script.js"></script>
 </body>
