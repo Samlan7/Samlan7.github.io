@@ -1,0 +1,618 @@
+/* --- Variable Definitions & Basic Reset --- */
+:root {
+    --primary-font: 'Orbitron', sans-serif;
+    --secondary-font: 'Audiowide', sans-serif;
+
+    /* Dark Theme (Default - Professional Tech) */
+    --bg-color: #0d1117;
+    --text-color: #c9d1d9;
+    --header-color: #58a6ff;
+    --accent-color: #3081f7;
+    --container-bg: rgba(22, 27, 34, 0.9);
+    --border-color: #30363d;
+    --glow-color-header: rgba(88, 166, 255, 0.4);
+    --glow-color-accent: rgba(48, 129, 247, 0.5);
+    --shadow-color: rgba(88, 166, 255, 0.1);
+    --skill-bg: rgba(48, 129, 247, 0.15);
+    --skill-hover-bg: #3081f7;
+    --skill-hover-text: #ffffff;
+    --button-bg: rgba(88, 166, 255, 0.1);
+    --button-hover-bg: #3081f7;
+    --button-text: #c9d1d9;
+    --button-hover-text: #ffffff;
+    --nav-bg: rgba(13, 17, 23, 0.85);
+    --nav-border: #30363d;
+    --nav-link-color: #c9d1d9;
+    --nav-link-hover-color: #58a6ff;
+    --nav-height: 60px;
+
+    /* Remove if not using background image */
+    /* --bg-image: url('img/stars-bg.jpg'); */
+}
+
+/* Light Theme */
+body.light-theme {
+    --bg-color: #f6f8fa;
+    --text-color: #24292f;
+    --header-color: #0969da;
+    --accent-color: #0550ae;
+    --container-bg: rgba(255, 255, 255, 0.9);
+    --border-color: #d0d7de;
+    --glow-color-header: rgba(9, 105, 218, 0.3);
+    --glow-color-accent: rgba(5, 80, 174, 0.4);
+    --shadow-color: rgba(140, 149, 159, 0.3);
+    --skill-bg: rgba(9, 105, 218, 0.1);
+    --skill-hover-bg: #0969da;
+    --skill-hover-text: #ffffff;
+    --button-bg: rgba(9, 105, 218, 0.1);
+    --button-hover-bg: #0550ae;
+    --button-text: #24292f;
+    --button-hover-text: #ffffff;
+    --nav-bg: rgba(246, 248, 250, 0.85);
+    --nav-border: #d0d7de;
+    --nav-link-color: #24292f;
+    --nav-link-hover-color: #0550ae;
+
+     /* Remove if not using background image */
+    /* --bg-image: url('img/light-side-bg.jpg'); */
+}
+
+/* --- Basic Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height);
+}
+
+body {
+    font-family: var(--primary-font), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-image: var(--bg-image);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+     padding-top: var(--nav-height);
+}
+
+/* --- Removed body::before overlay --- */
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: var(--header-color);
+    /* Optional subtle hover text-shadow */
+    /* text-shadow: 0 0 5px var(--glow-color-accent); */
+}
+
+/* --- Navbar Styles --- */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background-color: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.nav-container {
+    max-width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    font-family: var(--secondary-font);
+    font-size: 1.4em;
+    color: var(--header-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    letter-spacing: 1px;
+    white-space: nowrap; /* Prevent brand from wrapping */
+}
+.nav-brand:hover {
+    color: var(--nav-link-hover-color);
+    text-shadow: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    color: var(--nav-link-color);
+    text-decoration: none;
+    font-family: var(--primary-font);
+    font-size: 0.9em;
+    padding: 5px 8px;
+    border-radius: 4px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    white-space: nowrap;
+}
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--nav-link-hover-color);
+    transition: width 0.3s ease;
+}
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: var(--nav-link-hover-color);
+}
+.nav-links li a.active::after {
+     width: 70%;
+}
+
+/* Theme Toggle - Navbar */
+#navbar #theme-toggle {
+    position: static;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--nav-link-color);
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: var(--primary-font);
+    font-size: 0.85em;
+    transition: background-color 0.3s, color 0.3s, border-color 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 15px;
+}
+#navbar #theme-toggle:hover {
+    background-color: var(--button-bg);
+    color: var(--button-hover-text);
+    border-color: transparent;
+}
+#navbar #theme-toggle i {
+    transition: transform 0.5s ease;
+}
+body.light-theme #navbar #theme-toggle {
+     color: var(--button-text);
+}
+body.light-theme #navbar #theme-toggle:hover {
+     background-color: var(--button-hover-bg);
+     color: var(--button-hover-text);
+}
+body.light-theme #navbar #theme-toggle i {
+    transform: rotate(180deg);
+}
+
+/* --- Mobile Menu Styles --- */
+#mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--nav-link-color);
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+#mobile-nav-menu {
+    display: none;
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    width: 100%;
+    background-color: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    padding: 15px 0;
+    z-index: 999;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+    max-height: calc(100vh - var(--nav-height)); /* Limit height */
+    overflow-y: auto; /* Add scroll if menu gets long */
+}
+#mobile-nav-menu.active {
+    display: block;
+}
+#mobile-nav-menu ul { list-style: none; text-align: center; }
+#mobile-nav-menu li { padding: 0; margin-bottom: 10px; }
+#mobile-nav-menu li a {
+    display: block;
+    padding: 10px 20px;
+    color: var(--nav-link-color);
+    font-size: 1.1em;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+#mobile-nav-menu li a:hover {
+     background-color: rgba(88, 166, 255, 0.1);
+     color: var(--nav-link-hover-color);
+}
+body.light-theme #mobile-nav-menu li a:hover {
+     background-color: rgba(9, 105, 218, 0.1);
+     color: var(--nav-link-hover-color);
+}
+#mobile-theme-toggle {
+    background: none;
+    border: none;
+    color: var(--nav-link-color);
+    padding: 10px 20px;
+    font-family: var(--primary-font);
+    font-size: 1.1em;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+#mobile-theme-toggle:hover {
+     background-color: rgba(88, 166, 255, 0.1);
+     color: var(--nav-link-hover-color);
+}
+body.light-theme #mobile-theme-toggle:hover {
+      background-color: rgba(9, 105, 218, 0.1);
+      color: var(--nav-link-hover-color);
+}
+
+/* --- Main Content Container --- */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    background-color: var(--container-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 25px var(--shadow-color);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 6px;
+    position: relative;
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* --- Typography & Headers --- */
+h1, h2, h3 {
+    font-family: var(--secondary-font);
+    color: var(--header-color);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    /* Optional simpler text shadow */
+    /* text-shadow: 0 0 6px var(--glow-color-header); */
+    margin-bottom: 0.7em;
+    transition: color 0.4s ease;
+}
+
+h2 {
+    font-size: 1.6em;
+    border-bottom: 1px solid var(--accent-color);
+    display: inline-block;
+    padding-bottom: 6px;
+    margin-bottom: 1.8em;
+}
+h2 i {
+    margin-right: 10px;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+h3 {
+    font-size: 1.25em;
+    color: var(--text-color);
+    font-weight: 700;
+    font-family: var(--primary-font); /* Keep Orbitron */
+    text-transform: none;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.3em;
+    opacity: 0.95;
+}
+
+p {
+    margin-bottom: 1em;
+    font-size: 0.95rem;
+    font-family: system-ui, sans-serif; /* More readable font for body */
+    opacity: 0.9;
+}
+body.light-theme p {
+    opacity: 1;
+}
+
+
+/* Base UL/LI styling for sections */
+section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+section li {
+    margin-bottom: 0.7em;
+    position: relative;
+    padding-left: 20px;
+     font-family: system-ui, sans-serif; /* More readable font for lists */
+      opacity: 0.9;
+}
+body.light-theme section li {
+    opacity: 1;
+}
+
+/* Custom bullet point for section lists */
+section li::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 0.6em; /* Adjust alignment */
+    width: 5px;
+    height: 5px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    transition: background-color 0.4s ease;
+}
+
+/* --- Sections --- */
+.section {
+    padding: 35px 0;
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.4s ease;
+}
+.section:last-of-type {
+    border-bottom: none;
+}
+footer.section {
+    border-top: 1px solid var(--border-color);
+    border-bottom: none;
+     margin-top: 15px;
+     padding-top: 25px;
+     padding-bottom: 15px;
+}
+
+/* --- Hero Section --- */
+#hero {
+     padding-top: 20px;
+     padding-bottom: 40px;
+     border-bottom: 1px solid var(--accent-color);
+     text-align: center;
+ }
+#hero .name {
+    font-size: 3.2em;
+    font-weight: 700;
+    font-family: var(--primary-font);
+    margin-bottom: 0.15em;
+    color: var(--header-color);
+    /* text-shadow: 0 0 10px var(--glow-color-header); */ /* Optional simpler shadow */
+    display: inline-block;
+    cursor: default;
+    position: relative;
+    line-height: 1.1; /* Ensure tighter line height for large text */
+}
+/* Underline hover effect */
+#hero .name::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    /* box-shadow: 0 0 6px var(--glow-color-accent); */ /* Simpler */
+    transition: width 0.3s ease-out;
+}
+#hero .name:hover::after {
+    width: 60%;
+}
+
+#hero .subtitle {
+    font-size: 1.3em;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-top: 0.3em; /* Add space after name */
+    margin-bottom: 1.8em;
+    font-family: var(--primary-font); /* Keep Orbitron */
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 1px;
+    line-height: 1.4;
+}
+.contact-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px 25px;
+    font-size: 1em;
+}
+.contact-info a,
+.contact-info span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
+    opacity: 0.9;
+    font-family: system-ui, sans-serif; /* Readable font */
+}
+.contact-info a:hover {
+     color: var(--header-color);
+     opacity: 1;
+     text-shadow: none;
+}
+.contact-info i {
+    color: var(--accent-color);
+    font-size: 1.1em;
+    transition: color 0.4s ease;
+    flex-shrink: 0; /* Prevent icon shrinking */
+}
+
+/* --- Experience & Education Entries --- */
+.entry {
+    margin-bottom: 2em;
+}
+.entry .role {
+    font-weight: 700;
+    font-size: 1.05em;
+    margin-bottom: 0.1em;
+    color: var(--text-color);
+    font-family: var(--primary-font); /* Keep Orbitron for role */
+}
+.entry .meta {
+    font-size: 0.85em;
+    color: var(--accent-color);
+    margin-bottom: 0.8em;
+    opacity: 0.9;
+    font-family: var(--primary-font); /* Keep Orbitron */
+    letter-spacing: 0.5px;
+}
+.entry ul {
+    padding-left: 5px; /* Indent text slightly to align with bullets */
+}
+.entry li {
+    font-size: 0.9rem;
+}
+
+/* --- Skills --- */
+#skills .skills-list {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-start; /* Default: left align */
+}
+#skills .skills-list li {
+    background-color: var(--skill-bg);
+    border: 1px solid transparent;
+    padding: 8px 15px;
+    border-radius: 4px;
+    color: var(--text-color);
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--primary-font);
+    /* Reset specific list styles inherited from section li */
+    margin-bottom: 0;
+    position: static;
+}
+#skills .skills-list li::before {
+    content: none; /* No bullets for skills */
+}
+#skills .skills-list li:hover {
+    background-color: var(--skill-hover-bg);
+    color: var(--skill-hover-text);
+    /* box-shadow: 0 0 8px var(--glow-color-accent); */ /* Simpler shadow */
+    transform: translateY(-2px); /* Keep slight lift */
+    cursor: default;
+    border-color: var(--accent-color);
+}
+#skills .skills-list i {
+     color: var(--header-color);
+     transition: color 0.3s ease;
+     font-size: 0.9em;
+     opacity: 0.9;
+     flex-shrink: 0; /* Prevent icon shrinking */
+}
+#skills .skills-list li:hover i {
+    color: var(--skill-hover-text);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    font-size: 0.85em;
+    color: var(--text-color);
+    opacity: 0.7;
+    font-family: system-ui, sans-serif;
+}
+footer .copyright {
+    margin-top: 5px;
+    font-style: normal;
+}
+
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+    .nav-links, #navbar #theme-toggle { display: none; }
+    #mobile-menu-toggle { display: block; }
+
+    .container {
+        margin: 30px 15px;
+        padding: 25px;
+    }
+    #hero .name { font-size: 2.5em; }
+    #hero .subtitle { font-size: 1.1em; margin-top: 0.5em; }
+    h2 { font-size: 1.4em; }
+    .contact-info {
+        flex-direction: column;
+        align-items: center; /* Center align contacts */
+        gap: 12px;
+        font-size: 0.95em;
+    }
+     .contact-info span, .contact-info a {
+        text-align: center;
+        justify-content: center; /* Center icon+text within link/span */
+    }
+    /* Ensure skills look okay */
+     #skills .skills-list {
+        justify-content: center; /* Center skills on medium screens too */
+     }
+}
+
+@media (max-width: 480px) {
+     .nav-brand { font-size: 1.2em; margin-right: 5px; }
+     .nav-container { padding: 0 15px; }
+     #mobile-menu-toggle { font-size: 1.4em; }
+
+     .container {
+        margin: 20px 10px;
+        padding: 20px 15px;
+    }
+     body { font-size: 15px; line-height: 1.55; }
+
+     #hero { padding-top: 15px; padding-bottom: 30px; } /* Reduce hero padding */
+     #hero .name { font-size: 1.9em; line-height: 1.2; }
+     #hero .subtitle { font-size: 1em; line-height: 1.4; margin-bottom: 1.5em;}
+     .contact-info { font-size: 0.9em; gap: 10px; } /* Smaller gap */
+      /* Adjust contact items for potential wrapping */
+     .contact-info a, .contact-info span {
+        max-width: 100%;
+        overflow-wrap: break-word; /* Allow long emails/numbers to wrap */
+        word-break: break-all; /* Force breaks if needed */
+     }
+
+     h2 { font-size: 1.3em; margin-bottom: 1.5em; padding-bottom: 4px; }
+     h3 { font-size: 1.1em; }
+     p, section li { font-size: 0.9rem; } /* Slightly smaller body text */
+     .entry li { font-size: 0.88rem; }
+
+     #skills .skills-list {
+        gap: 8px;
+        justify-content: center;
+     }
+     #skills .skills-list li {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+    footer { font-size: 0.8em; padding-top: 20px; }
+}
