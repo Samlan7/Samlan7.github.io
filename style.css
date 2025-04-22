@@ -379,21 +379,23 @@ section li::before {
     transition: border-color 0.4s ease;
 }
 .section:last-of-type {
+    /* Remove border from the very last section (which is now footer) */
     border-bottom: none;
 }
+/* Special handling for footer section styling */
 footer.section {
-    border-top: 1px solid var(--border-color);
-    border-bottom: none;
-     margin-top: 15px;
-     padding-top: 25px;
-     padding-bottom: 15px;
+    border-top: 1px solid var(--border-color); /* Add top border to footer */
+    border-bottom: none; /* Ensure no bottom border on footer */
+     margin-top: 15px; /* Space above footer */
+     padding-top: 25px; /* Footer specific padding */
+     padding-bottom: 15px; /* Footer specific padding */
 }
 
 /* --- Hero Section --- */
 #hero {
      padding-top: 20px;
      padding-bottom: 40px;
-     border-bottom: 1px solid var(--accent-color);
+     border-bottom: 1px solid var(--accent-color); /* Keep border below hero */
      text-align: center;
  }
 #hero .name {
@@ -402,7 +404,6 @@ footer.section {
     font-family: var(--primary-font);
     margin-bottom: 0.15em;
     color: var(--header-color);
-    /* text-shadow: 0 0 10px var(--glow-color-header); */ /* Optional simpler shadow */
     display: inline-block;
     cursor: default;
     position: relative;
@@ -418,7 +419,6 @@ footer.section {
     width: 0;
     height: 2px;
     background-color: var(--accent-color);
-    /* box-shadow: 0 0 6px var(--glow-color-accent); */ /* Simpler */
     transition: width 0.3s ease-out;
 }
 #hero .name:hover::after {
@@ -515,6 +515,7 @@ footer.section {
     /* Reset specific list styles inherited from section li */
     margin-bottom: 0;
     position: static;
+    padding-left: 15px; /* Ensure bullet doesn't overlap icon */
 }
 #skills .skills-list li::before {
     content: none; /* No bullets for skills */
@@ -522,7 +523,6 @@ footer.section {
 #skills .skills-list li:hover {
     background-color: var(--skill-hover-bg);
     color: var(--skill-hover-text);
-    /* box-shadow: 0 0 8px var(--glow-color-accent); */ /* Simpler shadow */
     transform: translateY(-2px); /* Keep slight lift */
     cursor: default;
     border-color: var(--accent-color);
@@ -533,23 +533,160 @@ footer.section {
      font-size: 0.9em;
      opacity: 0.9;
      flex-shrink: 0; /* Prevent icon shrinking */
+     margin-right: 8px; /* Space between icon and text */
 }
 #skills .skills-list li:hover i {
     color: var(--skill-hover-text);
 }
 
 /* --- Footer --- */
-footer {
+/* Footer styles are now combined within footer.section above */
+footer .copyright {
     text-align: center;
     font-size: 0.85em;
     color: var(--text-color);
     opacity: 0.7;
     font-family: system-ui, sans-serif;
-}
-footer .copyright {
     margin-top: 5px;
     font-style: normal;
 }
+
+/* --- Contact Form Styles (Refined) --- */
+#contact {
+    padding-bottom: 40px; /* Add some bottom padding */
+    /* This is before the footer, so it SHOULD have a bottom border */
+     border-bottom: 1px solid var(--border-color);
+}
+
+/* Center the intro paragraph */
+#contact > p { /* Target only the direct <p> child of #contact */
+    text-align: center;
+    margin-bottom: 2.5em; /* Increased margin */
+    opacity: 0.85;
+    max-width: 600px; /* Limit width for better readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Consistent spacing between form groups */
+    max-width: 700px; /* Optional: Limit form width */
+    margin: 0 auto; /* Center the form within the section */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between label and input */
+}
+
+#contact-form label {
+    font-family: var(--primary-font); /* Use Orbitron like other labels/titles */
+    font-size: 0.85em; /* Slightly smaller */
+    color: var(--text-color);
+    opacity: 0.8; /* Slightly faded */
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 400;
+    padding-left: 2px; /* Slight indent */
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    /* Use a background slightly different from the main container for subtle definition */
+    background-color: rgba(0, 0, 0, 0.15); /* Dark theme input background */
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-family: system-ui, sans-serif; /* Readable font for input */
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.light-theme #contact-form input[type="text"],
+body.light-theme #contact-form input[type="email"],
+body.light-theme #contact-form textarea {
+     /* Lighter background for light theme */
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+#contact-form input[type="text"]:focus,
+#contact-form input[type="email"]:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-color); /* Highlight with accent color */
+    background-color: rgba(0, 0, 0, 0.2); /* Slightly darken on focus */
+    /* Use the accent glow for focus */
+    box-shadow: 0 0 0 3px var(--glow-color-accent);
+}
+
+body.light-theme #contact-form input[type="text"]:focus,
+body.light-theme #contact-form input[type="email"]:focus,
+body.light-theme #contact-form textarea:focus {
+     background-color: rgba(255, 255, 255, 0.8); /* Slightly lighten on focus */
+}
+
+
+#contact-form textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    min-height: 120px; /* Slightly taller */
+}
+
+/* Style the Submit Button to match theme */
+#contact-form .btn-submit {
+    /* Inherit button styles */
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid var(--accent-color); /* Give it an accent border */
+    padding: 12px 30px; /* Adjust padding */
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--primary-font); /* Orbitron */
+    font-size: 0.9em; /* Match nav link size */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    align-self: center; /* Center button horizontally */
+    margin-top: 15px; /* Space above button */
+    font-weight: 700;
+}
+
+#contact-form .btn-submit:hover {
+    background-color: var(--button-hover-bg); /* Use defined hover background */
+    color: var(--button-hover-text); /* Use defined hover text */
+    border-color: var(--header-color); /* Change border color on hover */
+    box-shadow: 0 0 10px var(--glow-color-accent); /* Add accent glow */
+}
+
+body.light-theme #contact-form .btn-submit {
+     border-color: var(--accent-color); /* Ensure border matches in light theme too */
+}
+
+body.light-theme #contact-form .btn-submit:hover {
+     border-color: var(--header-color);
+}
+
+
+/* Optional: Style for status message (no change needed from previous) */
+#form-status {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 0.9em;
+    min-height: 1.2em; /* Reserve space */
+}
+#form-status.success {
+    color: #33b864; /* Example success color */
+}
+#form-status.error {
+    color: #e74c3c; /* Example error color */
+}
+
 
 /* --- Responsiveness --- */
 @media (max-width: 768px) {
@@ -615,112 +752,11 @@ footer .copyright {
         font-size: 0.8em;
     }
     footer { font-size: 0.8em; padding-top: 20px; }
-}
 
-/* --- Contact Form Styles --- */
-#contact {
-    padding-bottom: 40px; /* Add some bottom padding */
-}
-
-#contact p {
-    text-align: center;
-    margin-bottom: 2em;
-    opacity: 0.85;
-}
-
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px; /* Spacing between form elements */
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px; /* Space between label and input */
-}
-
-#contact-form label {
-    font-family: var(--primary-font);
-    font-size: 0.9em;
-    color: var(--text-color);
-    opacity: 0.9;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-#contact-form input[type="text"],
-#contact-form input[type="email"],
-#contact-form textarea {
-    width: 100%;
-    padding: 12px 15px;
-    background-color: rgba(0, 0, 0, 0.1); /* Subtle dark background */
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    color: var(--text-color);
-    font-family: system-ui, sans-serif; /* Use readable font for input */
-    font-size: 0.95rem;
-    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-body.light-theme #contact-form input[type="text"],
-body.light-theme #contact-form input[type="email"],
-body.light-theme #contact-form textarea {
-    background-color: rgba(255, 255, 255, 0.4); /* Subtle light background */
-}
-
-
-#contact-form input[type="text"]:focus,
-#contact-form input[type="email"]:focus,
-#contact-form textarea:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 2px var(--glow-color-accent);
-}
-
-#contact-form textarea {
-    resize: vertical; /* Allow vertical resizing */
-    min-height: 100px;
-}
-
-#contact-form .btn-submit {
-    background-color: var(--button-bg);
-    color: var(--button-text);
-    border: 1px solid transparent;
-    padding: 12px 25px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-family: var(--primary-font);
-    font-size: 1em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-    align-self: center; /* Center button horizontally */
-    margin-top: 10px;
-}
-
-#contact-form .btn-submit:hover {
-    background-color: var(--button-hover-bg);
-    color: var(--button-hover-text);
-    box-shadow: 0 0 8px var(--glow-color-accent);
-}
-
-/* Optional: Style for status message (needs JS to populate) */
-#form-status {
-    margin-top: 15px;
-    text-align: center;
-    font-size: 0.9em;
-    min-height: 1.2em; /* Reserve space */
-}
-#form-status.success {
-    color: #33b864; /* Example success color */
-}
-#form-status.error {
-    color: #e74c3c; /* Example error color */
-}
-
-/* Adjust form padding on smaller screens if needed */
-@media (max-width: 480px) {
+    /* Adjust Contact Form for small screens */
+     #contact-form {
+        gap: 15px; /* Reduce gap on small screens */
+    }
     #contact-form input[type="text"],
     #contact-form input[type="email"],
     #contact-form textarea {
@@ -728,8 +764,8 @@ body.light-theme #contact-form textarea {
         font-size: 0.9rem;
     }
     #contact-form .btn-submit {
-        width: 100%; /* Make button full width */
-        padding: 10px 20px;
+        width: 100%; /* Make button full width for easier tapping */
+        padding: 11px 20px;
         font-size: 0.9em;
     }
 }
