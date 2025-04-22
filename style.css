@@ -616,3 +616,120 @@ footer .copyright {
     }
     footer { font-size: 0.8em; padding-top: 20px; }
 }
+
+/* --- Contact Form Styles --- */
+#contact {
+    padding-bottom: 40px; /* Add some bottom padding */
+}
+
+#contact p {
+    text-align: center;
+    margin-bottom: 2em;
+    opacity: 0.85;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px; /* Spacing between form elements */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Space between label and input */
+}
+
+#contact-form label {
+    font-family: var(--primary-font);
+    font-size: 0.9em;
+    color: var(--text-color);
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: rgba(0, 0, 0, 0.1); /* Subtle dark background */
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-family: system-ui, sans-serif; /* Use readable font for input */
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.light-theme #contact-form input[type="text"],
+body.light-theme #contact-form input[type="email"],
+body.light-theme #contact-form textarea {
+    background-color: rgba(255, 255, 255, 0.4); /* Subtle light background */
+}
+
+
+#contact-form input[type="text"]:focus,
+#contact-form input[type="email"]:focus,
+#contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px var(--glow-color-accent);
+}
+
+#contact-form textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 100px;
+}
+
+#contact-form .btn-submit {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid transparent;
+    padding: 12px 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--primary-font);
+    font-size: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    align-self: center; /* Center button horizontally */
+    margin-top: 10px;
+}
+
+#contact-form .btn-submit:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    box-shadow: 0 0 8px var(--glow-color-accent);
+}
+
+/* Optional: Style for status message (needs JS to populate) */
+#form-status {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 0.9em;
+    min-height: 1.2em; /* Reserve space */
+}
+#form-status.success {
+    color: #33b864; /* Example success color */
+}
+#form-status.error {
+    color: #e74c3c; /* Example error color */
+}
+
+/* Adjust form padding on smaller screens if needed */
+@media (max-width: 480px) {
+    #contact-form input[type="text"],
+    #contact-form input[type="email"],
+    #contact-form textarea {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+    #contact-form .btn-submit {
+        width: 100%; /* Make button full width */
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
